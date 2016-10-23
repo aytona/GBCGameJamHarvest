@@ -85,4 +85,15 @@ public class InGameUI : MonoBehaviour {
     public void SetPrevUI(GameObject prev) {
         m_PrevUI = prev;
     }
+
+    public void RestartGame()
+    {
+        UnPause();
+        Application.LoadLevel(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
