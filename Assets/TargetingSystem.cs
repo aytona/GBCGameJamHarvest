@@ -27,16 +27,6 @@ public class TargetingSystem : MonoBehaviour {
         {
             Fire();
         }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(Vector3.left * 10.0f * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector3.right * 10.0f * Time.deltaTime);
-        }
     }
 
     private void Target()
@@ -45,8 +35,8 @@ public class TargetingSystem : MonoBehaviour {
         {
             RaycastHit hit;
 
-            Debug.DrawRay(transform.position, transform.forward * m_targetingDistance, Color.green, Time.deltaTime);
-            if (Physics.Raycast(transform.position, transform.forward, out hit, m_targetingDistance))
+            //Debug.DrawRay(transform.position, transform.forward * m_targetingDistance, Color.green, Time.deltaTime);
+            if (Physics.Raycast(transform.position, transform.forward, out hit, m_targetingDistance,3))
             {
                 if (m_targetedObject == null)
                 {
@@ -81,7 +71,7 @@ public class TargetingSystem : MonoBehaviour {
     {
         if(m_isTargeted)
         {
-            GameObject torpedo = Instantiate(m_torpedo, m_torpedoSpawn.position, Quaternion.identity) as GameObject;
+            GameObject torpedo = Instantiate(m_torpedo, m_torpedoSpawn.position, transform.rotation) as GameObject;
             if (torpedo != null)
                 torpedo.GetComponent<Torpedo>().SetTarget(m_targetedObject.transform);
             m_isTargeted = false;
@@ -90,7 +80,7 @@ public class TargetingSystem : MonoBehaviour {
         {
             m_isTargeted = false;
             m_targetingCount = 0.0f;
-            Torpedo torpedo = Instantiate(m_torpedo, m_torpedoSpawn.position, Quaternion.identity) as Torpedo;
+            Instantiate(m_torpedo, m_torpedoSpawn.position, transform.rotation);
         }
     }
 }
