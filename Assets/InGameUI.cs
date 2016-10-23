@@ -7,11 +7,14 @@ public class InGameUI : MonoBehaviour {
     public GameObject m_PauseUI;
     public GameObject m_StoreUI;
     public GameObject m_MenuUI;
+    public GameObject m_InstructionsUI;
+    public GameObject m_CreditsUI;
 
     private List<GameObject> m_AllUI = null;
     private SmoothMouseLook mouseLock;
     private ShipThrusters shipThrusters;
     private bool m_inStore = false;
+    private GameObject m_PrevUI;
 
     void Start() {
         m_AllUI = new List<GameObject>();
@@ -23,6 +26,8 @@ public class InGameUI : MonoBehaviour {
         m_AllUI.Add(m_PauseUI);
         m_AllUI.Add(m_StoreUI);
         m_AllUI.Add(m_MenuUI);
+        m_AllUI.Add(m_InstructionsUI);
+        m_AllUI.Add(m_CreditsUI);
         SwitchUI(m_MenuUI);
     }
 
@@ -71,5 +76,13 @@ public class InGameUI : MonoBehaviour {
         mouseLock.enabled = true;
         shipThrusters.enabled = true;
         SwitchUI(m_GameUI);
+    }
+
+    public void Return() {
+        SwitchUI(m_PrevUI);
+    }
+
+    public void SetPrevUI(GameObject prev) {
+        m_PrevUI = prev;
     }
 }
