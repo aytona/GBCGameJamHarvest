@@ -10,10 +10,12 @@ public class AsteroidPhysics : MonoBehaviour {
     private Rigidbody m_rb;
     private Vector3 m_force;
     private Vector3 m_rotationAxis;
+    private Fuel m_fuel;
 
 
 	void Start () {
         m_rb = GetComponent<Rigidbody>();
+        m_fuel = FindObjectOfType<Fuel>();
 
         m_force = GetRandomForce(m_minForce, m_maxForce) * GetRandomVector();
         m_rotationAxis = GetRandomVector();
@@ -30,6 +32,7 @@ public class AsteroidPhysics : MonoBehaviour {
     {
         if(other.collider.CompareTag("Torpedo"))
         {
+            m_fuel.AddFuel(0.15f);
             Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

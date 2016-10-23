@@ -22,13 +22,23 @@ public class ShipThrusters : MonoBehaviour {
     /// </summary>
     private Rigidbody m_rb;
 
+    private Fuel m_fuel;
+
     void Start() {
         m_rb = GetComponent<Rigidbody>();
+        m_fuel = FindObjectOfType<Fuel>();
     }
 
     void FixedUpdate() {
-        m_Force.x = m_ThrustLever.GetComponent<ControlLever>().GetRotation();
-        m_rb.AddRelativeTorque( m_YawLever.GetComponent<ControlLever>().GetRotation(), m_RollLever.GetComponent<ControlLever>().GetRotation(), m_PitchLever.GetComponent<ControlLever>().GetRotation(), ForceMode.Impulse);
-        m_rb.AddRelativeForce(m_Force * speed, ForceMode.Impulse);
+        if (m_fuel.currentFuel > 0)
+        {
+            m_Force.x = m_ThrustLever.GetComponent<ControlLever>().GetRotation();
+            m_rb.AddRelativeTorque(m_YawLever.GetComponent<ControlLever>().GetRotation(), m_RollLever.GetComponent<ControlLever>().GetRotation(), m_PitchLever.GetComponent<ControlLever>().GetRotation(), ForceMode.Impulse);
+            m_rb.AddRelativeForce(m_Force * speed, ForceMode.Impulse);
+
+            if (Mathf.Abs(m_Force.x) > 0.1f)
+                m_fuel.UseFuel();
+
+        }
     }
 }
