@@ -5,10 +5,12 @@ using System.Collections;
 public class AsteroidPhysics : MonoBehaviour {
 
     public float m_minForce, m_maxForce;
+    public GameObject explosion;
 
     private Rigidbody m_rb;
     private Vector3 m_force;
     private Vector3 m_rotationAxis;
+
 
 	void Start () {
         m_rb = GetComponent<Rigidbody>();
@@ -22,6 +24,15 @@ public class AsteroidPhysics : MonoBehaviour {
     void Update()
     {
         transform.Rotate(m_rotationAxis * Time.deltaTime);
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.collider.CompareTag("Torpedo"))
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
     }
 
     private float GetRandomForce(float min, float max)

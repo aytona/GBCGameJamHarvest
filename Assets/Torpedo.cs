@@ -48,4 +48,10 @@ public class Torpedo : MonoBehaviour {
     {
         m_target = target;
     }
+
+    IEnumerator DestroyCount()
+    {
+        yield return new WaitForSeconds(5.0f);
+        Destroy(this.gameObject);
+    }
 }
