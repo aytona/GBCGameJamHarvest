@@ -1,6 +1,6 @@
 GBC Game Jam Harvest
 ======================
-first-person space asteroid mining simulator. Created during the GBC Game Jam #5.
+Solitary Space is a first-person space asteroid mining simulator. Created during the GBC Game Jam #5.
  
 Installation
 ---------------------
