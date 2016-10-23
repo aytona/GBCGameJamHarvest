@@ -10,6 +10,7 @@ public class ShipThrusters : MonoBehaviour {
     public GameObject m_YawLever;
     public GameObject m_RollLever;
     public GameObject m_ThrustLever;
+    public float speed;
 
     /// <summary>
     /// Force applied to this object depending on lever rotation
@@ -27,7 +28,7 @@ public class ShipThrusters : MonoBehaviour {
 
     void FixedUpdate() {
         m_Force.x = m_ThrustLever.GetComponent<ControlLever>().GetRotation();
-        m_rb.AddTorque( m_YawLever.GetComponent<ControlLever>().GetRotation(), m_RollLever.GetComponent<ControlLever>().GetRotation(), m_PitchLever.GetComponent<ControlLever>().GetRotation(), ForceMode.Impulse);
-        m_rb.AddForce(m_Force, ForceMode.Impulse);
+        m_rb.AddRelativeTorque( m_YawLever.GetComponent<ControlLever>().GetRotation(), m_RollLever.GetComponent<ControlLever>().GetRotation(), m_PitchLever.GetComponent<ControlLever>().GetRotation(), ForceMode.Impulse);
+        m_rb.AddRelativeForce(m_Force * speed, ForceMode.Impulse);
     }
 }
