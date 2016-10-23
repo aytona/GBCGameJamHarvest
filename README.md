@@ -1,6 +1,6 @@
 GBC Game Jam Harvest
 ======================
-Solitary Space is a first-person space asteroid mining simulator. Created during the GBC Game Jam #5.
+Solitary Space Unit is a first-person space asteroid mining simulator. Created during the GBC Game Jam #5.
  
 Installation
 ---------------------
@@ -24,3 +24,4 @@ GBC Game Jam Harvest is under [MIT License](https://opensource.org/licenses/MIT)
 Addition Notes
 ---------------------
 **[GBC Game Jam](http://gbcjam.com/index.html)** site.
+**[Game Submission](https://itch.io/jam/gbcjam-5/rate/93060)** @ itch.io
