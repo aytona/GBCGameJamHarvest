@@ -17,8 +17,12 @@ public class AsteroidPhysics : MonoBehaviour {
         m_rotationAxis = GetRandomVector();
 
         m_rb.AddForce(m_force);
-        m_rb.AddTorque(m_rotationAxis);
 	}
+
+    void Update()
+    {
+        transform.Rotate(m_rotationAxis * Time.deltaTime);
+    }
 
     private float GetRandomForce(float min, float max)
     {
