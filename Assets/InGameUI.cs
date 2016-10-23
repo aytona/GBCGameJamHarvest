@@ -7,11 +7,13 @@ public class InGameUI : MonoBehaviour {
     public GameObject m_PauseUI;
     public GameObject m_StoreUI;
 
-    private List<GameObject> m_AllUI;
-
+    private List<GameObject> m_AllUI = null;
+    private SmoothMouseLook mouseLock;
     private bool m_inStore = false;
 
     void Start() {
+        m_AllUI = new List<GameObject>();
+        mouseLock = FindObjectOfType<SmoothMouseLook>();
 #if UNITY_EDITOR
         Cursor.visible = true;
 #else
@@ -20,10 +22,14 @@ public class InGameUI : MonoBehaviour {
         m_AllUI.Add(m_GameUI);
         m_AllUI.Add(m_PauseUI);
         m_AllUI.Add(m_StoreUI);
+        SwitchUI(m_GameUI);
     }
 
     void Update() {
         if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) && !m_inStore) {
+            Time.timeScale = 0;
+            mouseLock.enabled = false;
+            Cursor.visible = true;
             SwitchUI(m_PauseUI);
         }
         if (m_inStore) {
@@ -43,5 +49,15 @@ public class InGameUI : MonoBehaviour {
                 i.SetActive(true);
             }
         }
+    }
+
+    public void UnPause() {
+        mouseLock.enabled = true;
+#if UNITY_EDITOR
+        Cursor.visible = true;
+#else
+        Cursor.visible = false;
+#endif
+        Time.timeScale = 1;
     }
 }
