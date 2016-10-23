@@ -13,6 +13,7 @@ Contributions & Contributors
 ---------------------
 Christopher Aytona (@aytona)<br/>
 Carlo Albino (@CarloAlbino)<br/>
+Duncan Ecclestone<br/>
 
 We welcome any contributions to the project through pull requestson GitHub.
 
